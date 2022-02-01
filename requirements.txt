@@ -1,0 +1,10 @@
+numpy==1.21.4
+opencv_python==4.5.4.58
+Pillow==9.0.0
+PyAutoGUI==0.9.53
+pyfiglet==0.8.post1
+pyglet==1.5.21
+pyttsx3==2.90
+SpeechRecognition==3.8.1
+wikipedia==1.4.0
+winshell==0.6
