@@ -6,6 +6,8 @@
 
 ### 🏠 [Homepage](https://github.com/MIDNIGHT-DEVELOPER/ZOYA-AI)
 
+![alt text](https://github.com/MIDNIGHT-DEVELOPER/ZOYA-3.0/blob/main/Images/ZOYA%20LOGO.png?raw=true)
+
 ### ✨ [Demo](https://youtu.be/RgtEbonYMpg)
 
 ## Install
