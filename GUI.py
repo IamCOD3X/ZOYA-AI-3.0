@@ -2035,7 +2035,7 @@ Q.bind('<Leave>', on_leave)
 #EnterButton.place(x=500, y=555, height=30)
 
 #Logo CODE
-photo = PhotoImage(file =r"\Project\ZOYA GUI\Images\AI logo.png")
+photo = PhotoImage(file =r"\Project\ZOYA GUI\Images\ZOYA LOGO.png")
 root.iconphoto(False, photo)
   
 
