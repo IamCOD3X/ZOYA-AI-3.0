@@ -14,6 +14,7 @@ else:
     quit()
 
 
+
 import pyttsx3
 import datetime
 import speech_recognition as sr
@@ -27,12 +28,18 @@ import subprocess
 import shutil
 import winshell
 import ctypes
+import requests
+import serial
 #import win32com.client as wincl 
 #from bs4 import BeautifulSoup
 from ssl import OP_ENABLE_MIDDLEBOX_COMPAT
 from tkinter import * 
 from tkinter import messagebox
 from PIL import Image
+from time import strftime
+from time import sleep
+
+
 
 
 
@@ -42,10 +49,10 @@ def SelfIntro():
     import pyglet
  
     # width of window
-    width = 1280
+    width = 1920
     
     # height of window
-    height = 720
+    height = 1080
     
     # caption i.e title of the window
     title = "Intro Video"
@@ -123,15 +130,17 @@ def SelfIntro():
     # printing value of texture
     print("Texture : " + str(value))
             
-            
-    
     # run the pyglet application
     pyglet.app.run()
-    window.close()
+    quit(1)
 
 #web Browser Settings
 chrome_path="C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" 
 webbrowser.register('chrome', None,webbrowser.BackgroundBrowser(chrome_path))
+
+
+#setting up bluetooth connection
+#ser = serial.Serial('COM6', 9600 ,bytesize=8 , timeout=1) #change COM Port , baudrate , timeout acc. to your need
 
 
 #Voice Engine Settings
@@ -157,7 +166,6 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-     
     # Enable low security in gmail
     server.login('your email id', 'your email passowrd')
     server.sendmail('your email id', to, content)
@@ -200,7 +208,7 @@ def sysinfo():
         
         sys.stdout.close()
 
-        #time.sleep(2)
+        #sleep(2)
         #with open('systeminfo.txt','r') as firstfile, open('systeminfo_display.txt','a') as secondfile:
       
         # read content from first file
@@ -219,6 +227,99 @@ def sysinfo():
         
         open(r"D\Project\ZOYA GUI\systeminfo.txt")
     sysinfo()
+
+
+#Home Automation
+def all_on():
+
+   print("Turning All Switchs ON")
+   ser = serial.Serial('COM6', 9600 ,bytesize=8 , timeout=1) #change COM Port , baudrate , timeout acc. to your need
+   sleep(0.1) 
+   ser.write(b'Z')
+   speak("Turning All Switchs ON")
+   sleep(0.5)
+   ser.close
+
+def all_off():
+   print("Turning All Switchs OFF")
+   ser = serial.Serial('COM6', 9600 ,bytesize=8 , timeout=1) #change COM Port , baudrate , timeout acc. to your need
+   sleep(0.1) 
+   ser.write(b'z')
+   speak("Turning All Switchs OFF")
+   sleep(0.5)
+   ser.close
+
+def S1_on():
+   print("Turning ON Switch 1")
+   ser = serial.Serial('COM6', 9600 ,bytesize=8 , timeout=1) #change COM Port , baudrate , timeout acc. to your need
+   sleep(0.1) 
+   ser.write(b'A')
+   speak("Turning ON Switch 1")
+   sleep(0.5)
+   ser.close
+
+def S1_off():
+   print("Turning OFF Switch 1")
+   ser = serial.Serial('COM6', 9600 ,bytesize=8 , timeout=1) #change COM Port , baudrate , timeout acc. to your need
+   sleep(0.1) 
+   ser.write(b'a')
+   speak("Turning OFF Switch 1")
+   sleep(0.5)
+   ser.close
+
+def S2_on():
+   print("Turning ON Switch 2")
+   ser = serial.Serial('COM6', 9600 ,bytesize=8 , timeout=1) #change COM Port , baudrate , timeout acc. to your need
+   sleep(0.1) 
+   ser.write(b'B')
+   speak("Turning ON Switch 2")
+   sleep(0.5)
+   ser.close
+
+def S2_off():
+   print("Turning OFF Switch 2")
+   ser = serial.Serial('COM6', 9600 ,bytesize=8 , timeout=1) #change COM Port , baudrate , timeout acc. to your need
+   sleep(0.1) 
+   ser.write(b'b')
+   speak("Turning OFF Switch 2")
+   sleep(0.5)
+   ser.close
+
+def S3_on():
+   print("Turning ON Switch 3")
+   ser = serial.Serial('COM6', 9600 ,bytesize=8 , timeout=1) #change COM Port , baudrate , timeout acc. to your need
+   sleep(0.1) 
+   ser.write(b'C')
+   speak("Turning ON Switch 3")
+   sleep(0.5)
+   ser.close
+
+def S3_off():
+   print("Turning OFF Switch 3")
+   ser = serial.Serial('COM6', 9600 ,bytesize=8 , timeout=1) #change COM Port , baudrate , timeout acc. to your need
+   sleep(0.1) 
+   ser.write(b'c')
+   speak("Turning OFF Switch 3")
+   sleep(0.5)
+   ser.close
+
+def S4_on():
+   print("Turning ON Switch 4")
+   ser = serial.Serial('COM6', 9600 ,bytesize=8 , timeout=1) #change COM Port , baudrate , timeout acc. to your need
+   sleep(0.1) 
+   ser.write(b'D')
+   speak("Turning ON Switch 4")
+   sleep(0.5)
+   ser.close
+
+def S4_off():
+   print("Turning OFF Switch 4")
+   ser = serial.Serial('COM6', 9600 ,bytesize=8 , timeout=1) #change COM Port , baudrate , timeout acc. to your need
+   sleep(0.1) 
+   ser.write(b'd')
+   speak("Turning OFF Switch 4") 
+   sleep(0.5)
+   ser.close
     
 
 
@@ -265,6 +366,11 @@ def speak(audio):
     engine.say(audio)
     engine.runAndWait()
 
+print("Initialization Sequence Completed")
+speak("Initialization Sequence Completed")
+
+sleep(1)
+
 print("Welcome to ZOYA AI Program")
 speak("Welcome to ZOYA AI Program")
 
@@ -285,6 +391,8 @@ def wishMe():
 
     print("Hi I'm Zoya. Please tell me, How may I help you")
     speak("Hi I'm Zoya. Please tell me, How may I help you")
+
+
     
 def Features():
     # open method used to open different extension image file
@@ -293,106 +401,46 @@ def Features():
         # This method will show image in any image viewer 
         im.show() 
 
-def CovidUpdates():
-    b = webbrowser.get('chrome')
-    b.open("https://www.covid19india.org/")
+def RPass():
+    print("Opening Password Generator")
+    speak("Opening Password Generator")
+    from subprocess import call
+    call(["python", "\Project\ZOYA GUI\Modules\RP.py"])
 
-def CovidResources():
+def QOTD():
+    print("Quote of the day is")
+    speak("Quote of the day is")
+    from subprocess import call
+    call(["python", "\Project\ZOYA GUI\Modules\QOTD.py"])
+
+def Weather():
+    print("Opening Weather Utility")
+    speak("Opening Weather Utility")
+    from subprocess import call
+    call(["python", "\Project\ZOYA GUI\Modules\Weather.py"])    
+
+def Device_Security():
+    print("Opening Port Scanner")
+    speak("Opening Port Scanner")
+    from subprocess import call
+    call(["python", "\Project\ZOYA GUI\Modules\OP.py"])
+
+
+def Resources():
     import webbrowser
-    webbrowser.open(r'file://Project\ZOYA GUI\Files\CovidResources.pdf')
-    webbrowser.open(r'file://Project\ZOYA GUI\Files\CovidResources2c.pdf')
-    webbrowser.open("https://docs.google.com/spreadsheets/d/1rd8vtTNOkXZ8lxsNW8cYQUBZhtkIIgledPR-md1Oprk/edit#gid=0")
+    webbrowser.open("https://doctorsforyou.org/")
 
-def CovidPrevention():
+def AirQuality():
+    print("Opening Air Quality Checker")
+    speak("Opening Air Quality Checker")
+    from subprocess import call
+    call(["python", "\Project\ZOYA GUI\Modules\AQ.py"])
 
-    import pyglet
- 
-    # width of window
-    width = 1280
-    
-    # height of window
-    height = 720
-    
-    # caption i.e title of the window
-    title = "Covid Preventation"
-    
-    # creating a window
-    window = pyglet.window.Window(width, height, title)
-    
-    
-    # video path
-    vidPath ="\\Project\\ZOYA GUI\\Videos\\2.mp4"
-    
-    # creating a media player object
-    player = pyglet.media.Player()
-    
-    # creating a source object
-    source = pyglet.media.StreamingSource()
-    
-    # load the media from the source
-    MediaLoad = pyglet.media.load(vidPath)
-    
-    # add this media in the queue
-    player.queue(MediaLoad)
-    
-    # play the video
-    player.play()
-    
-    # on draw event
-    @window.event
-    def on_draw():
-        
-        # clea the window
-        window.clear()
-        
-        # if player source exist
-        # and video format exist
-        if player.source and player.source.video_format:
-            
-            # get the texture of video and
-            # make surface to display on the screen
-            player.get_texture().blit(0, 0)
-
-    # key press event    
-    @window.event
-    def on_key_press(symbol, modifier):
-    
-        # key "p" get press
-        if symbol == pyglet.window.key.P:
-            
-            # pause the video
-            player.pause()
-            
-            # printing message
-            print("Video is paused")
-            
-            
-        # key "r" get press
-        if symbol == pyglet.window.key.R:
-            
-            # resume the video
-            player.play()
-            
-            # printing message
-            print("Video is resumed")
-            
-    
-            
-    # seek video at time stamp = 4
-    # and pause the video
-    #player.seek(4)
-    #player.pause()
-    
-    # getting texture of the video
-    value = player.get_texture()
-    
-    # printing value of texture
-    print("Texture : " + str(value))
-            
-            
-    
-    # run the pyglet application
-    pyglet.app.run()
+def HomeAutomation():
+    print("Opening HomeAutomation Utility")
+    speak("Opening HomeAutomation Utility")
+    from subprocess import call
+    call(["python", "\Project\ZOYA GUI\Modules\HomeAutomation.py"])
     
 
 def takeCommand():
@@ -466,7 +514,7 @@ def Start():
             
 
 
-            time.sleep(5)
+            sleep(5)
 
         
         elif 'show me some memories' in query or "do i have memories" in query:
@@ -486,7 +534,7 @@ def Start():
                 #im_crop=im.crop(box)
                 #im_crop.show()
 
-            time.sleep(5)
+            sleep(5)
 
 
         elif "what's your name" in query or "what is your name" in query:
@@ -494,7 +542,7 @@ def Start():
             speak("My friends call me")
             speak(assname)
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'news' in query:
             
@@ -541,7 +589,7 @@ def Start():
                             print("Can't recognize, Please Try again")
                 except:
                             print("Can't recognize, Please Try again")
-            time.sleep(5)
+            sleep(5)
 
         elif ' show system information' in query:
             print("Please wait. Collecting System Information")
@@ -568,7 +616,7 @@ def Start():
             print("Random Password is:")
             print(password)
 
-            time.sleep(5)
+            sleep(5)
 
         elif "open screen recorder" in query:
             import pyautogui
@@ -596,7 +644,7 @@ def Start():
 
             cv2.destroyAllWindows()
 
-            time.sleep(5)
+            sleep(5)
 
 
         elif 'search' in query:
@@ -610,21 +658,21 @@ def Start():
                 b.open(search_url)
             except:
                     print("Can't recognize, Please Try again")
-            time.sleep(5)
+            sleep(5)
 
         elif 'enable wifi' in query or 'turn-on Wi-Fi' in query:
             print("Enaabling WI-Fi")
             speak("Enaabling WI-Fi")
             os.popen(enable_wifi)
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'disable wifi' in query or 'turn-off Wi-Fi' in query:
             print("Disabling WI-Fi")
             speak("Disabling WI-Fi")
             os.popen(disable_wifi)
 
-            time.sleep(5)
+            sleep(5)
         
         elif "covid support" in query:
             print('Showing Information')
@@ -634,14 +682,7 @@ def Start():
             b.openr(r'file://Project\ZOYA GUI\Files\CovidResources.pdf')
             b.open("https://docs.google.com/spreadsheets/d/1rd8vtTNOkXZ8lxsNW8cYQUBZhtkIIgledPR-md1Oprk/edit#gid=0")
 
-            time.sleep(5)
-
-        elif "covid prevention" in query:
-            print("Playing Video")
-
-            CovidPrevention()
-
-            time.sleep(5)
+            sleep(5)
 
         elif "dinesh saran" in query:
             b = webbrowser.get('chrome')
@@ -657,269 +698,269 @@ def Start():
             b = webbrowser.get('chrome')
             b.open("youtube.com")
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'twitter' in query:
             b = webbrowser.get('chrome')
             b.open("twitter.com")
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'google translate' in query:
             b = webbrowser.get('chrome')
             b.open("translate.google.com")
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'flipkart' in query:
             b = webbrowser.get('chrome')
             b.open("flipkart.com")
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'pc shop' in query:
             b = webbrowser.get('chrome')
             b.open("pcshop.in")
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'map' in query:
             b = webbrowser.get('chrome')
             b.open("google.com/maps")
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'classroom' in query:
             b = webbrowser.get('chrome')
             b.open("https://classroom.google.com/u/1/h")
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'meet' in query:
             b = webbrowser.get('chrome')
             b.open("meet.google.com/")
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'discord' in query:
             b = webbrowser.get('chrome')
             b.open("https://discord.com/")
 
-            time.sleep(5)
+            sleep(5)
                                 
         elif 'google' in query:
             b = webbrowser.get('chrome')
             b.open("google.com")
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'instagram' in query:
             b = webbrowser.get('chrome')
             b.open("instagram.com")
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'search' in query :
             query = query.replace("search", "") 
             b = webbrowser.get('chrome')        
             b.open(query)
 
-            time.sleep(5) 
+            sleep(5) 
 
         elif 'gmail' in query:
             b = webbrowser.get('chrome')
             b.open("gmail.com")
 
-            time.sleep(5)
+            sleep(5)
         
         elif 'github' in query:
             b = webbrowser.get('chrome')
             b.open("github.com")
 
-            time.sleep(5)
+            sleep(5)
         
         elif 'facebook' in query:
             b = webbrowser.get('chrome')
             b.open("facebook.com")
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'stackoverflow' in query:
             b = webbrowser.get('chrome')
             b.open("stackoverflow.com")
 
-            time.sleep(5)
+            sleep(5)
         
         elif 'whatsapp' in query:
             b = webbrowser.get('chrome')
             b.open("web.whatsapp.com")
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'yt music' in query:
             b = webbrowser.get('chrome')
             b.open("music.youtube.com")
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'amazon' in query:
             b = webbrowser.get('chrome')
             b.open("amazon.in")
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"Sir , the time is {strTime}")
 
-            time.sleep(5)
+            sleep(5)
             
         elif 'code' in query:
             Path = "C:\\Users\\didio\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
             os.startfile(Path)  
 
-            time.sleep(5)
+            sleep(5)
         
         elif 'chrome' in query:
             Path = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
             os.startfile(Path)
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'virtual dj' in query:
             Path = 'C:\\Program Files\\VirtualDJ\\virtualdj.exe'
             os.startfile(Path)
 
-            time.sleep(5)
+            sleep(5)
         
         elif 'torrent' in query:
             Path = "C:\\Users\\didio\\AppData\\Roaming\\uTorrent\\uTorrent.exe"
             os.startfile(Path)
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'edge' in query:
             Path = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
             os.startfile(Path)
 
-            time.sleep(5)
+            sleep(5)
         
         elif 'explorer' in query:
             Path = "C:\\Windows\\explorer.exe"
             os.startfile(Path)
 
-            time.sleep(5) 
+            sleep(5) 
 
         elif 'games folder' in query:
             Path = "D:\\Games"
             os.startfile(Path)
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'downloads folder' in query:
             Path = "C:\\Users\\didio\\Downloads"
             os.startfile(Path)
 
-            time.sleep(5)
+            sleep(5)
 
         
         elif 'music folder' in query:
             Path = "C:\\Users\\didio\\Music"
             os.startfile(Path)
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'videos folder' in query:
             Path = "C:\\Users\\didio\\Videos"
             os.startfile(Path)
 
-            time.sleep(5)
+            sleep(5)
             
         elif 'notepad plus' in query:
             Path = "C:\\Program Files\\Notepad++\\notepad++.exe"
             os.startfile(Path)
 
-            time.sleep(5)
+            sleep(5)
                 
         elif 'calculator' in query:
             subprocess.Popen('C:\\Windows\\System32\\calc.exe')
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'camera' in query:
             subprocess.run('start microsoft.windows.camera:', shell=True)
 
-            time.sleep(5)
+            sleep(5)
         
         elif 'notepad' in query:
             subprocess.Popen('C:\\Windows\\System32\\notepad.exe')
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'wordpad' in query:
             subprocess.Popen('C:\\Windows\\System32\\write.exe')
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'task manager' in query:
             subprocess.Popen('C:\\Windows\\System32\\taskmgr.exe')
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'command' in query:
             subprocess.Popen('C:\\Windows\\System32\\cmd.exe')
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'ms info' in query:
             subprocess.Popen('C:\\Windows\\System32\\msinfo32.exe')
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'dialer' in query:
             subprocess.Popen('C:\\Windows\\System32\\dialer.exe')
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'snipping tool' in query:
             subprocess.Popen('C:\\Windows\\System32\\SnippingTool.exe')
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'resource manager' in query:
             subprocess.Popen('C:\\Windows\\System32\\resmon.exe')
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'performance manager' in query:
             subprocess.Popen('C:\\Windows\\System32\\perfmon.exe')
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'ms config' in query:
             subprocess.Popen('C:\\Windows\\System32\\msconfig.exe')
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'dx diag' in query:
             subprocess.Popen('C:\\Windows\\System32\\dxdiag.exe')
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'device properties' in query:
             subprocess.Popen('C:\\Windows\\System32\\DeviceProperties.exe')
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'game panel' in query:
             subprocess.Popen('C:\\Windows\\System32\\GamePanel.exe')
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'paint' in query:
             subprocess.Popen('C:\\Windows\\System32\\mspaint.exe')
 
-            time.sleep(5)
+            sleep(5)
 
         elif "check internet speed" in query:
             b = webbrowser.get('chrome')
@@ -936,7 +977,7 @@ def Start():
                 print("Disk Not Found")
                 speak("Disk Not Found")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk b" in query: 
             try:
@@ -949,7 +990,7 @@ def Start():
                 speak("Disk Not Found")
 
 
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk c" in query: 
             try:
@@ -962,7 +1003,7 @@ def Start():
                 speak("Disk Not Found")
 
 
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk d" in query: 
             try:
@@ -975,7 +1016,7 @@ def Start():
                 speak("Disk Not Found")
 
 
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk e" in query: 
             try:
@@ -987,7 +1028,7 @@ def Start():
                 print("Disk Not Found")
                 speak("Disk Not Found")
 
-            time.sleep(5)
+            sleep(5)
         
         elif "local disk f" in query: 
             try:
@@ -1000,7 +1041,7 @@ def Start():
                 speak("Disk Not Found")
 
 
-            time.sleep(5)
+            sleep(5)
         
         elif "local disk g" in query: 
             try:
@@ -1012,7 +1053,7 @@ def Start():
                 print("Disk Not Found")
                 speak("Disk Not Found")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk h" in query: 
             try:
@@ -1024,7 +1065,7 @@ def Start():
                 print("Disk Not Found")
                 speak("Disk Not Found")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk i" in query: 
             try:
@@ -1036,7 +1077,7 @@ def Start():
                 print("Disk Not Found")
                 speak("Disk Not Found")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk j" in query: 
             try:
@@ -1048,7 +1089,7 @@ def Start():
                 print("Disk Not Found")
                 speak("Disk Not Found")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk k" in query: 
             try:
@@ -1060,7 +1101,7 @@ def Start():
                 print("Disk Not Found")
                 speak("Disk Not Found")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk l" in query: 
             try:
@@ -1072,7 +1113,7 @@ def Start():
                 print("Disk Not Found")
                 speak("Disk Not Found")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk m" in query: 
             try:
@@ -1084,7 +1125,7 @@ def Start():
                 print("Disk Not Found")
 
 
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk n" in query: 
             try:
@@ -1095,7 +1136,7 @@ def Start():
                 not os.path.exists("N:")
                 print("Disk Not Found")
 
-            time.sleep(5)
+            sleep(5)
         
         elif "local disk o" in query: 
             try:
@@ -1107,7 +1148,7 @@ def Start():
                 print("Disk Not Found")
                 speak("Disk Not Found")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk p" in query: 
             try:
@@ -1119,7 +1160,7 @@ def Start():
                 print("Disk Not Found")
                 speak("Disk Not Found")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk q" in query: 
             try:
@@ -1131,7 +1172,7 @@ def Start():
                 print("Disk Not Found")
                 speak("Disk Not Found")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk r" in query: 
             try:
@@ -1143,7 +1184,7 @@ def Start():
                 print("Disk Not Found")
                 speak("Disk Not Found")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk s" in query: 
             try:
@@ -1155,7 +1196,7 @@ def Start():
                 print("Disk Not Found")
                 speak("Disk Not Found")
 
-            time.sleep(5)
+            sleep(5)
         
         elif "local disk t" in query: 
             try:
@@ -1167,7 +1208,7 @@ def Start():
                 print("Disk Not Found")
                 speak("Disk Not Found")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk u" in query: 
             try:
@@ -1179,7 +1220,7 @@ def Start():
                 print("Disk Not Found")
                 speak("Disk Not Found")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk v" in query: 
             try:
@@ -1191,7 +1232,7 @@ def Start():
                 print("Disk Not Found")
                 speak("Disk Not Found")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk w" in query: 
             try:
@@ -1203,7 +1244,7 @@ def Start():
                 print("Disk Not Found")
                 speak("Disk Not Found")
 
-            time.sleep(5)
+            sleep(5)
         
         elif "local disk x" in query: 
             try:
@@ -1214,7 +1255,7 @@ def Start():
                 not os.path.exists("X:")
                 print("Disk Not Found")
                 speak("Disk Not Found")
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk y" in query: 
             try:
@@ -1225,7 +1266,7 @@ def Start():
                 not os.path.exists("Y:")
                 print("Disk Not Found")
                 speak("Disk Not Found")
-            time.sleep(5)
+            sleep(5)
 
         elif "local disk z" in query: 
             try:
@@ -1236,7 +1277,7 @@ def Start():
                 not os.path.exists("Z:")
                 print("Disk Not Found")
                 speak("Disk Not Found")
-            time.sleep(5)
+            sleep(5)
         
         elif 'set reminder' in query:
             print("What shall I remind you about?")
@@ -1244,10 +1285,10 @@ def Start():
             print("In how many minutes?")
             local_time = float(input())
             local_time = local_time * 60
-            time.sleep(local_time)
+            sleep(local_time)
             print(text)
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'play music' in query:
             import random
@@ -1259,7 +1300,7 @@ def Start():
             print(songs)
             os.startfile(os.path.join(music_dir, songs))
 
-            time.sleep(5)
+            sleep(5)
 
         elif "open presentation" in query:
             print("Opening Your File")
@@ -1275,14 +1316,14 @@ def Start():
             print('I an an AI Assistant. Developed by Sourabh. Coded in Python' )
             speak('I an an AI Assistant. Developed by Sourabh. Coded in Python' )
 
-            time.sleep(5)
+            sleep(5)
             
         elif "good morning" in query:
                 speak("A warm" + query)
                 print("How are you Coder?")
                 speak("How are you Coder?")
 
-                time.sleep(5)   
+                sleep(5)   
             
                 
         elif "good afternoon" in query:
@@ -1290,21 +1331,21 @@ def Start():
                 print("How are you Coder?")
                 speak("How are you Coder?")
                 
-                time.sleep(5)
+                sleep(5)
         
         elif "good evening" in query:
                 speak("A warm" + query)
                 print("How are you Coder?")
                 speak("How are you Coder?")
                 
-                time.sleep(5)
+                sleep(5)
         
         elif "good night" in query:
                 speak("A warm" + query)
                 print("How are you Coder?")
                 speak("How are you Coder?")
                 
-                time.sleep(5)
+                sleep(5)
 
         elif 'send a mail' in query:
                 try:
@@ -1318,22 +1359,22 @@ def Start():
                     print(e)
                     speak("I am not able to send this email")
 
-                time.sleep(5)
+                sleep(5)
 
         elif "will you be my gf" in query:   
                 speak("I'm not sure about, may be you should give me some time")
 
-                time.sleep(5)
+                sleep(5)
 
         elif "how are you" in query:
                 speak("I'm fine, glad you ask me that")
 
-                time.sleep(5)
+                sleep(5)
 
         elif "i love you" in query:
                 speak("Sorry I'm love with your wifi")
 
-                time.sleep(5)
+                sleep(5)
 
         elif "write a note" in query:
                 speak("What should i write, sir")
@@ -1350,7 +1391,7 @@ def Start():
                 else:
                     file.write(note)
 
-                time.sleep(5)
+                sleep(5)
             
         elif "show note" in query:
                 speak("Showing Notes")
@@ -1358,7 +1399,7 @@ def Start():
                 print(file.read())
                 speak(file.read(6))
 
-                time.sleep(5)
+                sleep(5)
 
         elif 'how are you?' in query:
                 speak("I am fine, Thanks for asking :)")
@@ -1368,63 +1409,63 @@ def Start():
                 if 'fine' in query or "good" in query:
                     speak("It's good to know that you're fine")
 
-                time.sleep(5)
+                sleep(5)
 
         elif "change my name to" in query:
                 query = query.replace("change my name to", "")
                 assname = query
 
-                time.sleep(5)
+                sleep(5)
 
         elif "change name" in query:
                 speak("What would you like to call me, Sir ")
                 assname = takeCommand()
                 speak("Thanks for naming me")
 
-                time.sleep(5)
+                sleep(5)
 
         elif "what's your name" in query or "What is your name" in query:
                 speak("My friends call me")
                 speak(assname)
                 print("My friends call me", assname)
 
-                time.sleep(5)
+                sleep(5)
 
         elif "who made you" in query or "who created you" in query: 
             print("I have been created by CODER.")
             speak("I have been created by CODER.")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "who i am" in query:
             speak("If you talk then definately your human.")
             print("If you talk then definately your human.")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "why you came to world" in query:
             speak("Thanks to Coder further it's a secret")
             print("Thanks to Coder further it's a secret")
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'is love' in query:
             speak("It is 7th sense that destroy all other senses")
             print("It is 7th sense that destroy all other senses")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "who are you" in query:
             speak("I'm ZOYA, your virtual assistant")
             print("I'm ZOYA, your virtual assistant")
 
-            time.sleep(5)
+            sleep(5)
 
         elif 'reason for you' in query:
             print("To help you dear.")
             speak("To help you dear.")
 
-            time.sleep(5)
+            sleep(5)
             
                     
         elif 'empty recycle bin' in query:
@@ -1432,16 +1473,16 @@ def Start():
             print("Recycle Bin Cleaned")
             speak("Recycle Bin Cleaned")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "don't listen" in query or "stop listening" in query:
             print("For how much time you want to stop ZOYA from listening commands")
             speak("For how much time you want to stop ZOYA from listening commands")
             a = StringVar(takeCommand())
-            time.sleep(a)
+            sleep(a)
             print(a)
 
-            time.sleep(5)
+            sleep(5)
 
         elif "where is" in query:
             query = query.replace("where is", "")
@@ -1450,7 +1491,7 @@ def Start():
             speak(location)
             webbrowser.open("https://www.google.com/maps/place/" + location + "")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "scan for open ports" in query:
             print("Scaning for Open Ports on your device.")
@@ -1489,7 +1530,7 @@ def Start():
 
             print("Some Ports Can Compromise With Your Device Security")
             speak("Some Ports Can Compromise With Your Device Security")
-            time.sleep(2)
+            sleep(2)
             print("You Can Turn Some Unused Ports Manually Using This Manual")
             speak("You Can Turn Some Unused Ports Manually Using This Manual")
 
@@ -1502,7 +1543,7 @@ def Start():
             # This method will show image in any image viewer 
             im.show() 
 
-            time.sleep(10)
+            sleep(10)
 
 #Power Realated Commands
 
@@ -1511,58 +1552,58 @@ def Start():
                 speak("locking the device")
                 ctypes.windll.user32.LockWorkStation()
 
-                time.sleep(5)
+                sleep(5)
 
         elif 'shutdown system' in query:
                 print("Hold On ! Your system is on its way to shut down. Make sure you have you've saved you work")
                 speak("Hold On ! Your system is on its way to shut down. Make sure you have you've saved you work")
-                time.sleep(10)
+                sleep(10)
                 subprocess.call('shutdown / p /f')
 
-                time.sleep(5)
+                sleep(5)
 
         elif "restart" in query:
             print("Make sure all the application are closed and saved before restarting.")
             speak("Make sure all the application are closed and saved before restarting.")
             print("Window will restart within 5 seconds.")
-            time.sleep(5)
+            sleep(5)
             subprocess.call(["shutdown", "/r"])
 
-            time.sleep(5)
+            sleep(5)
                 
         elif "hibernate" in query: 
             print("Hibernating")
             speak("Hibernating")
             subprocess.call("shutdown /h")
 
-            time.sleep(5)
+            sleep(5)
             
 
         elif "sleep" in query:
             print("Window will sleep within 5 seconds.")
             speak("Window will sleep within 5 seconds.")
 
-            time.sleep(5)
+            sleep(5)
             
-            time.sleep(5)
+            sleep(5)
             print("Sleeping")
             speak("Sleeping")
             subprocess.call("shutdown /h")
 
-            time.sleep(5)
+            sleep(5)
 
         elif "log off" in query or "sign out" in query:
             print("Make sure all the application are closed before sign-out.")
             speak("Make sure all the application are closed before sign-out")
             print("Window will Log-off within 5 seconds.")
             
-            time.sleep(5)
+            sleep(5)
             subprocess.call(["shutdown", "/l"])
 
         elif "exit" in query or "quit" in query:
             print("Ok, Sure")
             speak("Ok, Sure")
-            time.sleep(1)
+            sleep(1)
             print("See You Soon Dear")
             speak("See You Soon Dear")
             print("Exiting..")
@@ -1570,12 +1611,73 @@ def Start():
 
             
 
-        elif "You can sleep " in query or "sleep now " in query:
+        elif "you can sleep " in query or "sleep now " in query:
             print("Ok sir, I'm going to sleep now you can call me anytime")
             speak("Ok sir, I'm going to sleep now you can call me anytime")
             break
 
+        elif "on all switches" in query:
+            sleep(0.1)
+            print("Turning on All Switches")
+            speak("Turning on All Switches")
             
+            all_on()
+            
+        elif "turn off all switches" in query:
+            sleep(0.1)
+            print("Turning off All Switches")
+            
+            all_off()
+
+        elif "on switch 1" in query:
+            sleep(0.1)
+            print("Turning on Switch 1")
+            
+            S1_on()
+
+        elif "off switch 1" in query:
+            sleep(0.1)
+            print("Turning off Switch 1")
+            
+            S1_off()
+
+        elif "on switch 2" in query:
+            sleep(0.1)
+            print("Turning on Switch 2")
+            
+            S2_on()
+
+        elif "off switch 2" in query:
+            sleep(0.1)
+            print("Turning off Switch 2")
+            
+            S2_off()
+
+        elif "on switch 3" in query:
+            sleep(0.1)
+            print("Turning on Switch 3")
+            
+            S3_on()
+
+        elif "off switch 3" in query:
+            sleep(0.1)
+            print("Turning off Switch 3")
+            
+            S3_off()
+
+        elif "on switch 4" in query:
+            sleep(0.1)
+            print("Turning on Switch 4")
+            
+            S4_on()
+
+        elif "off switch 4" in query:
+            sleep(0.1)
+            print("Turning off Switch 4")
+            
+            S4_off()
+        
+
         else:              
             sr.Microphone(device_index=1)
             r=sr.Recognizer()
@@ -1593,23 +1695,23 @@ def Start():
                     print("Can't recognize, Please Try again")
 
 
-            time.sleep(3)
+            sleep(3)
 
 #def send():
 #    print("OK")
     
-
 canvas_width = 900
 canvas_height = 500  
 
 
 
 root =Tk()
-root.title("ZOYA version 2.0")
+root.title("ZOYA version 3.0")
 
 root.geometry("900x600")
 root.minsize(900,600)
 root.maxsize(900,600)
+
 
 can_widget = Canvas(root, width=canvas_width, height=canvas_height)
 can_widget.pack()
@@ -1618,115 +1720,289 @@ can_widget.create_line(450, 0, 450, 500, fill="red")
 
 L1= Label(text="ZOYA AI" , fg="Black", font="Aquarilla 40 ", relief=SUNKEN)
 L1.pack()
-L1.place(x=170,y=0)
+L1.place(x=120,y=0)
 
-L2= Label(text="ZOYA ver 2.0", bg="white" ,fg="Black", font="Voltec 10 " )
+L2= Label(text="ZOYA ver 3.0", bg="white" ,fg="Black", font="Voltec 10 " )
 L2.pack(side=BOTTOM , anchor="sw")
 
-L3= Label( text="COVID-19 Support", bg="white" , fg="black", font="Voltec 10 ")
+L3= Label( text="Utilities", bg="white" , fg="black", font="Voltec 10 ")
 L3.pack()
-L3.place(x=620,y=510)
+L3.place(x=640,y=520)
 
 L4= Label( text="Quick Buttons", bg="white" , fg="black", font="Voltec 10 ")
 L4.pack()
-L4.place(x=185,y=510)
+L4.place(x=185,y=520)
 
-
-#L3= Label(text="Next", fg="Cyan", font="Bilbo 10 bold", relief=SUNKEN)
-#L3.pack()
-
-#L4= Label(text="Exit", fg="Cyan", font="Bilbo 10 bold", relief=SUNKEN)
-#L4.pack()
-
-#L5= Label(text="Show Info", fg="Cyan", font="Bilbo 10 bold", relief=SUNKEN)
-#L5.pack(anchor=CENTER)
-
-#L0= Frame(text="About", fg="Black", font="Bilbo 10 bold", relief=SUNKEN)
-#L0.pack(side=BOTTOM , anchor="ne")
-
-
+#L5= Label( text="Quote Of The Day", bg="white" , fg="black", font="Voltec 10 ")
+#L5.pack()
+#L5.place(x=175,y=350)
 
 #Buttons Frames
 
-F0= Frame(root, borderwidth=10 , bg="Black", relief=SUNKEN )
+F0= Frame(root, borderwidth=3 , bg="Black", relief=SUNKEN )
 F0.pack(side=BOTTOM , anchor=CENTER)
-F0.place(x=730 ,y=00)
+F0.place(x=685 ,y=00)
 
-F1= Frame(root, borderwidth=50 , bg="black" , relief=SUNKEN)
+F1= Frame(root, borderwidth=3 )
 F1.pack(side=TOP , anchor=CENTER)
-F1.place(x=130 ,y=160)
+F1.place(x=145 ,y=160)
 
-F2= Frame(root, borderwidth=10 , bg="black" , relief=SUNKEN ,  width="12", height="5")
+F2= Frame(root, borderwidth=3 , bg="black" , relief=SUNKEN ,  width="12", height="5")
 F2.pack(side=BOTTOM , anchor=CENTER)
-F2.place(x=20,y=530)
+F2.place(x=20,y=545)
 
-F3= Frame(root, borderwidth=10 , bg="black" , relief=SUNKEN ,  width="12", height="5")
+F3= Frame(root, borderwidth=3 , bg="black" , relief=SUNKEN ,  width="20", height="5")
 F3.pack(side=BOTTOM , anchor=CENTER)
-F3.place(x=470,y=530)
+F3.place(x=470,y=545)
+
+F4= Frame(root, borderwidth=3 , bg="Black" , relief=SUNKEN )
+F4.pack(side=BOTTOM , anchor=CENTER)
+F4.place(x=20 , y=500)
 
 #Main Control Buttons 
 
-b1=Button(F1,text="Start",bg="Black", fg="White" ,command=Start)
-b1.pack(side=TOP)
+def on_enter(f):
+   Mb1.config(background='green yellow', foreground= "black")
+def on_leave(f):
+   Mb1.config(background= 'SystemButtonFace', foreground= 'black')
+Mb1=Button(F1,text="Start",bg="Black", fg="White",width=20 ,command=Start)
+Mb1.pack(side=TOP)
+Mb1.bind('<Enter>', on_enter)
+Mb1.bind('<Leave>', on_leave)
 
-b2=Button(F1,text="Exit",bg="Black", fg="White" ,command=exit_)
-b2.pack(side=BOTTOM)
+def on_enter(f):
+   Mb2.config(background='RED', foreground= "white")
+def on_leave(f):
+   Mb2.config(background= 'SystemButtonFace', foreground= 'black')
+Mb2=Button(F1,text="Exit",bg="Black", fg="White" , width=20 ,command=exit_)
+Mb2.pack(side=BOTTOM)
+Mb2.bind('<Enter>', on_enter)
+Mb2.bind('<Leave>', on_leave)
 
-b3=Button(F1,text="Show Info",bg="Black" , fg="White" ,command=info)
-b3.pack(side=BOTTOM)
-
-b4=Button(F1,text="Features",bg="Black" , fg="White" ,font="Arial 10 ",command=Features)
-b4.pack()
-
-b5=Button(F1,text="Click To Play",bg="Black" , fg="White" ,font="Arial 10 ",command=SelfIntro)
-b5.pack()
-
-#Covid Rresources
-
-b1=Button(F3,text="COVID-19 Updates",bg="Black" , fg="White" ,font="Arial 10 ",command=CovidUpdates)
-b1.pack(side=LEFT)
-
-b2=Button(F3,text="COVID-19 Resources",bg="Black" , fg="White" ,font="Arial 10 ",command=CovidResources)
-b2.pack(side=LEFT)
-
-b3=Button(F3,text="COVID-19 Prevention",bg="Black" , fg="White" ,font="Arial 10 ",command=CovidPrevention)
-b3.pack(side=LEFT)
+def on_enter(f):
+   Mb3.config(background='DarkSlateGray1', foreground= "Black")
+def on_leave(f):
+   Mb3.config(background= 'SystemButtonFace', foreground= 'black')
+Mb3=Button(F1,text="Show Info",bg="Black" , fg="White" , width=20 ,command=info)
+Mb3.pack(side=BOTTOM)
+Mb3.bind('<Enter>', on_enter)
+Mb3.bind('<Leave>', on_leave)
 
 
-#Bottom Left Buttons
+def on_enter(f):
+   Mb4.config(background='DarkSlateGray1', foreground= "Black")
+def on_leave(f):
+   Mb4.config(background= 'SystemButtonFace', foreground= 'black')
+Mb4=Button(F1,text="Features",bg="Black" , fg="White" , width=20 ,command=Features)
+Mb4.pack(side=BOTTOM)
+Mb4.bind('<Enter>', on_enter)
+Mb4.bind('<Leave>', on_leave)
 
-b1=Button(F0,text="Support",bg="Black" , fg="White" ,font="Arial 9 ",command=devsupport)
-b1.pack(side=LEFT)
+def on_enter(f):
+   Mb5.config(background='DarkSlateGray1', foreground= "Black")
+def on_leave(f):
+   Mb5.config(background= 'SystemButtonFace', foreground= 'black')
+Mb5=Button(F1,text="About ZOYA",bg="Black" , fg="White" , width=20 ,command=SelfIntro)
+Mb5.pack(side=BOTTOM)
+Mb5.bind('<Enter>', on_enter)
+Mb5.bind('<Leave>', on_leave)
 
-b2=Button(F0,text="System Info",bg="Black" , fg="White" ,font="Arial 9 ",command=sysinfo)
-b2.pack(side=LEFT)
+
+#Utilities buttons
+def on_enter(f):
+   UB1.config(background='green yellow', foreground= "black")
+def on_leave(f):
+   UB1.config(background= 'SystemButtonFace', foreground= 'black')
+UB1=Button(F3,text="DevSec",bg="Black", fg="White",width=6 ,command=Device_Security)
+UB1.pack(side=LEFT)
+UB1.bind('<Enter>', on_enter)
+UB1.bind('<Leave>', on_leave)
+
+
+def on_enter(f):
+   UB2.config(background='green yellow', foreground= "black")
+def on_leave(f):
+   UB2.config(background= 'SystemButtonFace', foreground= 'black')
+UB2=Button(F3,text="MedResources",bg="Black", fg="White",width=11 ,command=Resources)
+UB2.pack(side=LEFT)
+UB2.bind('<Enter>', on_enter)
+UB2.bind('<Leave>', on_leave)
+
+
+
+def on_enter(f):
+   UB3.config(background='green yellow', foreground= "black")
+def on_leave(f):
+   UB3.config(background= 'SystemButtonFace', foreground= 'black')
+UB3=Button(F3,text="AutoHome",bg="Black", fg="White",width=8 ,command=HomeAutomation)
+UB3.pack(side=LEFT)
+UB3.bind('<Enter>', on_enter)
+UB3.bind('<Leave>', on_leave)
+
+
+def on_enter(f):
+   UB4.config(background='green yellow', foreground= "black")
+def on_leave(f):
+   UB4.config(background= 'SystemButtonFace', foreground= 'black')
+UB4=Button(F3,text="AirQuality",bg="Black", fg="White",width=8 ,command=AirQuality)
+UB4.pack(side=LEFT)
+UB4.bind('<Enter>', on_enter)
+UB4.bind('<Leave>', on_leave)
+
+
+def on_enter(f):
+   UB5.config(background='green yellow', foreground= "black")
+def on_leave(f):
+   UB5.config(background= 'SystemButtonFace', foreground= 'black')
+UB5=Button(F3,text="Pass Gen",bg="Black", fg="White",width=8 ,command=RPass)
+UB5.pack(side=LEFT)
+UB5.bind('<Enter>', on_enter)
+UB5.bind('<Leave>', on_leave)
+
+
+def on_enter(f):
+   UB6.config(background='green yellow', foreground= "black")
+def on_leave(f):
+   UB6.config(background= 'SystemButtonFace', foreground= 'black')
+UB6=Button(F3,text="Weather",bg="Black", fg="White",width=8 ,command=Weather)
+UB6.pack(side=LEFT)
+UB6.bind('<Enter>', on_enter)
+UB6.bind('<Leave>', on_leave)
+
+
+#Support Buttons
+def on_enter(f):
+   SB2.config(background='DarkSlateGray1', foreground= "Black")
+def on_leave(f):
+   SB2.config(background= 'SystemButtonFace', foreground= 'black')
+SB2=Button(F0,text="Support",bg="Black" , fg="White" ,font="Arial 8 ",command=devsupport)
+SB2.pack(side=LEFT)
+SB2.bind('<Enter>', on_enter)
+SB2.bind('<Leave>', on_leave)
+
+
+def time():
+    string = strftime('%H:%M:%S %p')
+    lbl.config(text = string)
+    lbl.after(1000, time)
+  
+# Styling the label widget so that clock
+# will look more attractive
+lbl = Label(F0, font = ('calibri', 10, 'bold'),
+            background = 'black',
+            foreground = 'white')
+
+  
+# Placing clock at the centre
+# of the tkinter window
+lbl.pack(side=LEFT)
+time()
+
+
+def on_enter(f):
+   SB1.config(background='DarkSlateGray1', foreground= "Black")
+def on_leave(f):
+   SB1.config(background= 'SystemButtonFace', foreground= 'black')
+SB1=Button(F0,text="System Info",bg="Black" , fg="White" ,font="Arial 8 ",command=sysinfo)
+SB1.pack(side=LEFT)
+SB1.bind('<Enter>', on_enter)
+SB1.bind('<Leave>', on_leave)
+
 
 
 #Social Media Link
 
-b1=Button(F2,text="Instagram",bg="Black", fg="White" , font="Arial 8" ,command=Instagram)
-b1.pack(side=LEFT)
+def on_enter(f):
+   I.config(background='green yellow', foreground= "Black")
+def on_leave(f):
+   I.config(background= 'SystemButtonFace', foreground= 'black')
+I=Button(F2,text="Instagram",bg="Black" , fg="White" ,font="Arial 8 ",command=Instagram)
+I.pack(side=LEFT)
+I.bind('<Enter>', on_enter)
+I.bind('<Leave>', on_leave)
 
-b2=Button(F2,text="Facebook",bg="Black", fg="White", font="Arial 8" ,command=Facebook)
-b2.pack(side=LEFT)
 
-b3=Button(F2,text="Twitter",bg="Black" , fg="White", font="Arial 8" , command=Twitter)
-b3.pack(side=LEFT)
+def on_enter(f):
+   F.config(background='green yellow', foreground= "Black")
+def on_leave(f):
+   F.config(background= 'SystemButtonFace', foreground= 'black')
+F=Button(F2,text="Facebook",bg="Black" , fg="White" ,font="Arial 8 ",command=Facebook)
+F.pack(side=LEFT)
+F.bind('<Enter>', on_enter)
+F.bind('<Leave>', on_leave)
 
-b4=Button(F2,text="Gmail",bg="Black" , fg="White" ,font="Arial 8",command=Gmail)
-b4.pack(side=LEFT)
 
-b5=Button(F2,text="Youtube",bg="Black" , fg="White" ,font="Arial 8",command=Youtube)
-b5.pack(side=LEFT)
+def on_enter(f):
+   T.config(background='green yellow', foreground= "Black")
+def on_leave(f):
+   T.config(background= 'SystemButtonFace', foreground= 'black')
+T=Button(F2,text="Twitter",bg="Black" , fg="White" ,font="Arial 8 ",command=Twitter)
+T.pack(side=LEFT)
+T.bind('<Enter>', on_enter)
+T.bind('<Leave>', on_leave)
 
-b6=Button(F2,text="Whatsapp",bg="Black" , fg="White" ,font="Arial 8",command=Whatsapp)
-b6.pack(side=LEFT)
 
-b7=Button(F2,text="Amazon",bg="Black" , fg="White" ,font="Arial 8",command=Amazon)
-b7.pack(side=LEFT)
+def on_enter(f):
+   G.config(background='green yellow', foreground= "Black")
+def on_leave(f):
+   G.config(background= 'SystemButtonFace', foreground= 'black')
+G=Button(F2,text="Gmail",bg="Black" , fg="White" ,font="Arial 8 ",command=Gmail)
+G.pack(side=LEFT)
+G.bind('<Enter>', on_enter)
+G.bind('<Leave>', on_leave)
 
-b8=Button(F2,text="Flipkart",bg="Black" , fg="White" ,font="Arial 8",command=Flipkart)
-b8.pack(side=LEFT)
+
+def on_enter(f):
+   Y.config(background='green yellow', foreground= "Black")
+def on_leave(f):
+   Y.config(background= 'SystemButtonFace', foreground= 'black')
+Y=Button(F2,text="Youtube",bg="Black" , fg="White" ,font="Arial 8 ",command=Youtube)
+Y.pack(side=LEFT)
+Y.bind('<Enter>', on_enter)
+Y.bind('<Leave>', on_leave)
+
+
+def on_enter(f):
+   W.config(background='green yellow', foreground= "Black")
+def on_leave(f):
+   W.config(background= 'SystemButtonFace', foreground= 'black')
+W=Button(F2,text="Whatsapp",bg="Black" , fg="White" ,font="Arial 8 ",command=Whatsapp)
+W.pack(side=LEFT)
+W.bind('<Enter>', on_enter)
+W.bind('<Leave>', on_leave)
+
+
+def on_enter(f):
+   A.config(background='green yellow', foreground= "Black")
+def on_leave(f):
+   A.config(background= 'SystemButtonFace', foreground= 'black')
+A=Button(F2,text="Amazon",bg="Black" , fg="White" ,font="Arial 8 ",command=Amazon)
+A.pack(side=LEFT)
+A.bind('<Enter>', on_enter)
+A.bind('<Leave>', on_leave)
+
+
+def on_enter(f):
+   Fl.config(background='green yellow', foreground= "Black")
+def on_leave(f):
+   Fl.config(background= 'SystemButtonFace', foreground= 'black')
+Fl=Button(F2,text="Flipkart",bg="Black" , fg="White", width=8 ,font="Arial 8 ",command=Flipkart)
+Fl.pack(side=LEFT)
+Fl.bind('<Enter>', on_enter)
+Fl.bind('<Leave>', on_leave)
+
+
+
+#Quote
+
+def on_enter(f):
+   Q.config(background='DarkSlateGray1', foreground= "Black")
+def on_leave(f):
+   Q.config(background= 'SystemButtonFace', foreground= 'black')
+Q=Button(F4,text="Quote Of The Day",bg="Black" , fg="White" ,font="Arial 8",command=QOTD)
+Q.pack(side=LEFT)
+Q.bind('<Enter>', on_enter)
+Q.bind('<Leave>', on_leave)
 
 
 
@@ -1784,6 +2060,5 @@ root.after(0, update, 0)
 
 #TransparentUIEffect
 #root.attributes('-alpha',0.8)
-
 
 root.mainloop()
