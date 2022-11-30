@@ -1,3 +1,3 @@
-cd E:\ZOYA GUI
+cd E:\GITHUB\ZOYA-AI\
 python GUI.py
 exit
