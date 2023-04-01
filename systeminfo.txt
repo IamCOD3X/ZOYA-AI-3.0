@@ -1,2 +1,58 @@
 
+<<<<<<< HEAD
+Host Name:                 CODER
+OS Name:                   Microsoft Windows 11 Enterprise
+OS Version:                10.0.22621 N/A Build 22621
+OS Manufacturer:           Microsoft Corporation
+OS Configuration:          Standalone Workstation
+OS Build Type:             Multiprocessor Free
+Registered Owner:          sourabh.pitanjli28@gmail.com
+Registered Organization:   N/A
+Product ID:                00329-00000-00003-AA982
+Original Install Date:     16-11-2022, 05:00:01
+System Boot Time:          17-11-2022, 16:25:58
+System Manufacturer:       Gigabyte Technology Co., Ltd.
+System Model:              B450M AORUS ELITE
+System Type:               x64-based PC
+Processor(s):              1 Processor(s) Installed.
+                           [01]: AMD64 Family 23 Model 113 Stepping 0 AuthenticAMD ~3600 Mhz
+BIOS Version:              American Megatrends International, LLC. F64, 29-07-2022
+Windows Directory:         C:\\WINDOWS
+System Directory:          C:\\WINDOWS\\system32
+Boot Device:               \\Device\\HarddiskVolume5
+System Locale:             en-us;English (United States)
+Input Locale:              00004009
+Time Zone:                 (UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi
+Total Physical Memory:     16,307 MB
+Available Physical Memory: 9,554 MB
+Virtual Memory: Max Size:  19,251 MB
+Virtual Memory: Available: 9,525 MB
+Virtual Memory: In Use:    9,726 MB
+Page File Location(s):     C:\\pagefile.sys
+Domain:                    WORKGROUP
+Logon Server:              \\\\CODER
+Hotfix(s):                 3 Hotfix(s) Installed.
+                           [01]: KB5020622
+                           [02]: KB5019980
+                           [03]: KB5019304
+Network Card(s):           3 NIC(s) Installed.
+                           [01]: Realtek Gaming GbE Family Controller
+                                 Connection Name: Ethernet
+                                 DHCP Enabled:    Yes
+                                 DHCP Server:     192.168.1.1
+                                 IP address(es)
+                                 [01]: 192.168.1.2
+                                 [02]: fe80::a75a:d71a:2854:74d0
+                           [02]: 802.11n USB Wireless LAN Card
+                                 Connection Name: Wi-Fi
+                                 Status:          Media disconnected
+                           [03]: Bluetooth Device (Personal Area Network)
+                                 Connection Name: Bluetooth Network Connection
+                                 Status:          Media disconnected
+Hyper-V Requirements:      VM Monitor Mode Extensions: Yes
+                           Virtualization Enabled In Firmware: Yes
+                           Second Level Address Translation: Yes
+                           Data Execution Prevention Available: Yes
+=======
+>>>>>>> 340d244996cbb0e87f300aed7c430035c7e15379
 

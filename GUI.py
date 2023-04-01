@@ -2042,7 +2042,7 @@ root.iconphoto(False, photo)
 
 
 #GIF
-frameCnt = 50
+frameCnt = 10
 frames = [PhotoImage(file=r'\Project\ZOYA GUI\Images\giphy.gif',format = 'gif -index %i' %(i)) for i in range(frameCnt)]
 
 def update(ind):
