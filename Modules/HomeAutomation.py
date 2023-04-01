@@ -27,7 +27,7 @@ def devsupport():
    print("Opening Support Website")
    speak("Opening Support Website")
    b = webbrowser.get('chrome')
-   b.open("www.github.com/MIDNIGHT-DEVELOPER/HomeAutomation")
+   b.open("www.github.com/IamCOD3X/HomeAutomation")
 
 def all_on():
    print("Turning All Switchs ON")

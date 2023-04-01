@@ -14,7 +14,7 @@ myList = []
 
 def devsupport(): 
     b = webbrowser.get('chrome')
-    b.open("https://github.com/MIDNIGHT-DEVELOPER/WiFiPasswordViewer")
+    b.open("https://github.com/iamCOD3X/WiFiPasswordViewer")
 
 def see_wifi_pass():
     import subprocess

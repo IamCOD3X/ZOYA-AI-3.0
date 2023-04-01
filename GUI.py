@@ -183,7 +183,7 @@ def Username():
 
 def devsupport(): 
     b = webbrowser.get('chrome')
-    b.open("www.github.com/MIDNIGHT-DEVELOPER")
+    b.open("www.github.com/IamCOD3X")
 
 def sysinfo():
     f = open('systeminfo.txt', 'r+')
@@ -2042,7 +2042,7 @@ root.iconphoto(False, photo)
 
 
 #GIF
-frameCnt = 10
+frameCnt = 50
 frames = [PhotoImage(file=r'\Project\ZOYA GUI\Images\giphy.gif',format = 'gif -index %i' %(i)) for i in range(frameCnt)]
 
 def update(ind):
