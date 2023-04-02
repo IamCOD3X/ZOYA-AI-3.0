@@ -54,4 +54,3 @@ git branch -d branch-name
 ```
 That's it you made it 🐣⭐⭐
 
-Thanks to @ManoBharathi93 for helping in this.! <3
