@@ -4,9 +4,9 @@
 
 > It's a python based project with Tkinter GUI. Which support voice command through pyttsx3 and Speach  Recognition. It also support HomeAutomation over Bluetooth and Serial Connection.
 
-### 🏠 [Homepage](https://github.com/MIDNIGHT-DEVELOPER/ZOYA-AI)
+### 🏠 [Homepage](https://github.com/IamCOD3X/ZOYA-AI)
 
-![alt text](https://github.com/MIDNIGHT-DEVELOPER/ZOYA-3.0/blob/main/Images/ZOYA%20LOGO.png?raw=true)
+![alt text](https://github.com/IamCOD3X/ZOYA-3.0/blob/main/Images/ZOYA%20LOGO.png?raw=true)
 
 ## DEMO
 
