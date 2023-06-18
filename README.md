@@ -29,9 +29,9 @@ python.exe GUI.py
 
 👤 **SourabhPanchal**
 
-* Website: https://youtu.be/RgtEbonYMpg
+* Youtube: https://youtu.be/RgtEbonYMpg
 * Twitter: [@\_\_DECODER\_\_](https://twitter.com/\_\_DECODER\_\_)
-* Github: [@MIDNIGHT-DEVELOPER](https://github.com/MIDNIGHT-DEVELOPER)
+* Github: [@IamCOD3X](https://github.com/IamCOD3X)
 * LinkedIn: [@sourabh-panchal](https://linkedin.com/in/sourabh-panchal)
 
 ## 🤝 Contributing
